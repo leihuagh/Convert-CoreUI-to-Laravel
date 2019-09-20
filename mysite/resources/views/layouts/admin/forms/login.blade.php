@@ -4,14 +4,16 @@
         <span class="input-group-text">
             <i class="icon-user"></i>
         </span>
+        <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
     </div>
-    <input class="form-control" type="text" placeholder="Username">
+    <div>{{ $errors->first('email') }}</div>
 </div>
 <div class="input-group mb-4">
     <div class="input-group-prepend">
         <span class="input-group-text">
             <i class="icon-lock"></i>
         </span>
+        <input class="form-control" type="password" name="password" placeholder="Password">
     </div>
-    <input class="form-control" type="password" placeholder="Password">
+    <div>{{ $errors->first('password') }}</div>
 </div>

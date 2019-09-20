@@ -8,6 +8,9 @@ class AdminController extends Controller
 {
     public function login(Request $request)
     {
+        if ($request->isMethod('post')) {
+            dd('Hi');
+        }
         return view('admin.login.index');
     }
 

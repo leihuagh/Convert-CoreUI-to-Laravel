@@ -18,5 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::match(['get', 'post'], '/admin', 'AdminController@login')->name('login');
+Route::match(['get', 'post'], '/admin', 'AdminController@login')->name('adminLogin');
 Route::get('/admin/dashboard', 'AdminController@index')->name('dashboard');

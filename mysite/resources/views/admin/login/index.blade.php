@@ -17,6 +17,16 @@
                         <div class="card-body">
                             <h1>Login</h1>
                             <p class="text-muted">Sign In to your account</p>
+                            @if (Session::has('flash_message_error'))
+                            <div class="row">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>{!! session('flash_message_error') !!}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                            @endif
                             <form action="{{ url('admin') }}" method="POST">
                                 @include('layouts.admin.forms.login')
                                 <div class="row">

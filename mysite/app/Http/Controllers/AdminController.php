@@ -16,11 +16,13 @@ class AdminController extends Controller
                 'password' => $data['password'],
                 'admin' => '1'
             ])) {
-                echo "Success";
-                die;
+                // echo "Success";
+                // die;
+                return redirect()->route('dashboard');
             } else {
-                echo "failed";
-                die;
+                // echo "failed";
+                // die;
+                return redirect()->route('adminLogin')->with('flash_message_error', 'Invalid Email or Password');
             }
         }
         return view('admin.login.index');

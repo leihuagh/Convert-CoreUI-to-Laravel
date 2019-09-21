@@ -3,19 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminController extends Controller
 {
     public function login(Request $request)
     {
         if ($request->isMethod('post')) {
-            dd('Hi');
+            $data = $this->loginValidation($request);
+            if (Auth::attempt([
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'admin' => '1'
+            ])) {
+                echo "Success";
+                die;
+            } else {
+                echo "failed";
+                die;
+            }
         }
         return view('admin.login.index');
     }
 
     public function index(Request $request)
     {
-        return view('admin.index');
+        return view('admin.dashboard.index');
+    }
+
+    private function loginValidation(Request $request)
+    {
+        return $request->validate([
+            'email'    => 'required|email',
+            'password' => [
+                'required',
+                'string',
+                'min:10',             // must be at least 10 characters in length
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/', // must contain a special character
+            ],
+        ]);
     }
 }
